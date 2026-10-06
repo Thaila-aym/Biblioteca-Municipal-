@@ -1,19 +1,21 @@
 //parte 
 import * as readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
-import { ItemBase } from './ItemBase.js';
 import {Leitor} from './Leitor.js';
 import { Ebook, LivroFisico } from './TiposDeItens.js';
+import { AtendimentoBiblioteca } from './AtendimentoBiblioteca.js';
 
 const rl = readline.createInterface({ input, output });
 console.log("=== BIBLIOTECA MUNICIPAL!===");
 
 async function iniciarSistema() {
- const mome= await rl.question("Digite o nome do usúario:");
+ const nome= await rl.question("Digite o nome do usúario:");
  const idade= await rl.question("Digite a idade do usúario:");
+ const novo = new AtendimentoBiblioteca();
+ novo.cadastrarnovoleitor(nome, idade);
 }
  //parte 02//
- const cadastro= parseFloat(await rl.question("Qual opção quer cadastrar 1-LivroFisico, 2-Ebook ?"));
+ const cadastro= parseFloat(await rl.question("Qual opção quer cadastrar 1-Ebook, 2-LivroFisico?"));
  const titulo= await rl.question("Informe o titulo do livro:");
  const autor= await rl.question("Infome o nome do autor:");
  const anoPublicacao= await rl.question("Informe o ano da publicação:");
@@ -35,12 +37,10 @@ default:
 }
 
  //parte 04//
-disasAtraso = ("* 2.50")
-   console.log("Quantos dias de atraso tem essa devoluçaõ?");
+   const diasAtraso = parseInt(await rl.question("Informe a quantidade de dias de atraso: "));
+   const calcMulta = livro.calcularMulta(diasAtraso);
 
- //parte 05//
-calcularMulta();
-   console.log(`\n O valor total da multa: ${calcularMulta.toFixed(2)}`);
+   console.log(`\n O valor total da multa: ${calcMulta.toFixed(2)}`);
 
    rl.close()
 

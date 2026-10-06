@@ -17,6 +17,9 @@ set anoPublicacao(novoano){
         console.log("[BLOQUEIO] O ano é invalido!");
         return;
     }
+    if(isNaN(novoano)){
+        throw new Error("Ano Invalido!");
+    }
     this.#anoPublicacao = novoano;
 }
 

@@ -4,12 +4,13 @@ export class Leitor{
         this.nome = nome;
         this.idade = idade;
     }
-
-    
-set idade(idade){
+    set idade(idade){
     if (idade >= 12){
-        throw new ERROR ("Leitor menor de 12 anos precisa do responsável para o cadastro !");
+        throw new Error ("LEITOR MENOR E IDADE!");
         return;
+}
+if(isNaN(idade)){
+    throw new Error("Idade Invalido!");
 }
 this.idade= idade;
 }
